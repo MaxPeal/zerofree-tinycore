@@ -1,2 +1,4 @@
 .idea/
 zerofree.tcz
+*.tcz
+*.tar.gz
