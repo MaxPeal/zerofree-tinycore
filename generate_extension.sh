@@ -14,6 +14,6 @@ cd ..
 mv src/zerofree zerofree/usr/local/bin/zerofree
 chmod -R 755 zerofree/*
 sudo chown -R root:root zerofree/*
-sudo mksquashfs zerofree zerofree.tcz
+sudo mksquashfs zerofree zerofree.tcz -noappend
 sudo chown -R tc zerofree/usr
 printf "\nzerofree TCZ extension successfully created\n"

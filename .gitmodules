@@ -1,0 +1,3 @@
+[submodule "TinyCore-toolchain"]
+	path = TinyCore-toolchain
+	url = ../TinyCore-toolchain

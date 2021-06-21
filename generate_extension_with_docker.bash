@@ -4,7 +4,10 @@ set -x
 
 if [[ "$(docker images -q tinycore:12.0-x86_64 2> /dev/null)" == "" ]]; then
   echo "Local Docker image tinycore does not exist, we will build it with docker build..."
+  cd TinyCore-toolchain
+  make all
   docker build -t tinycore:12.0-x86_64 .
+  cd ..
 fi
 docker run -it --rm \
   -v $(pwd):/tmp/zerofree \
