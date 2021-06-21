@@ -2,6 +2,9 @@
 
 set -x
 
+SCRIPT_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+cd $SCRIPT_PATH
+
 if [[ "$(docker images -q tinycore:12.0-x86_64 2> /dev/null)" == "" ]]; then
   echo "Local Docker image tinycore does not exist, we will build it with docker build..."
   cd TinyCore-toolchain
