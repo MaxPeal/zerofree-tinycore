@@ -6,12 +6,15 @@ SCRIPT_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 cd $SCRIPT_PATH
 
 # Sources compilation
-cd src
-gcc -lext2fs -o zerofree zerofree.c
+TMPDIR=$(mktemp -d)
+cd $TMPDIR
+cp $SCRIPT_PATH/src/* .
+#gcc -lext2fs -o zerofree zerofree.c
+make all
 cd ..
 
 # TCZ extension generation
-mv src/zerofree zerofree/usr/local/bin/zerofree
+mv $TMPDIR/zerofree zerofree/usr/local/bin/zerofree
 chmod -R 755 zerofree/*
 sudo chown -R root:root zerofree/*
 sudo mksquashfs zerofree zerofree.tcz -noappend
