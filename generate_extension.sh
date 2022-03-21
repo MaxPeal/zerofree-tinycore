@@ -14,9 +14,11 @@ make all
 cd ..
 
 # TCZ extension generation
-mv $TMPDIR/zerofree zerofree/usr/local/bin/zerofree
-chmod -R 755 zerofree/*
-sudo chown -R root:root zerofree/*
-sudo mksquashfs zerofree zerofree.tcz -noappend
-sudo chown -R tc zerofree/usr
+TMPDIR2=$(mktemp -d)
+mkdir -p $TMPDIR2/zerofree/usr/local/bin
+mv $TMPDIR/zerofree $TMPDIR2/zerofree/usr/local/bin/zerofree
+chmod -R 755 $TMPDIR2/zerofree/*
+sudo chown -R root:root $TMPDIR2/zerofree/*
+cd $TMPDIR2/ && sudo mksquashfs zerofree zerofree.tcz -noappend
+sudo chown -R tc $TMPDIR2/zerofree/usr
 printf "\nzerofree TCZ extension successfully created\n"
