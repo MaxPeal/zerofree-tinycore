@@ -12,6 +12,8 @@ if [[ "$(docker images -q tinycore:12.0-x86_64 2> /dev/null)" == "" ]]; then
   docker build -t tinycore:12.0-x86_64 .
   cd ..
 fi
+mkdir -p out
+chmod 777 out
 docker run -it --rm \
-  -v $(pwd):/tmp/zerofree \
+  -v $(pwd):/tmp/zerofree -v $(pwd)/out:/out \
   -w /tmp/zerofree tinycore:12.0-x86_64 sh ./generate_extension.sh
